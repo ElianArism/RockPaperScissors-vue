@@ -1,30 +1,63 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <main class="container">
+    <Header />
+    <router-view/>
+  </main>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Header from './components/Header.vue'
 
-#nav {
-  padding: 30px;
+export default {
+  components: {
+    Header
+  },
+  setup() {
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
-}
+};
+</script>
+
+
+<style lang="scss">
+  :root {
+    --color-pink: #E05D5D; 
+    --color-white-pink: #ff9e9e; 
+    --color-black: #333; 
+    --color-white: #f3f3f3;
+    --color-white-yellow: #FFF8E5;
+    --color-orange: #FFB344; 
+    --color-white-orange: #faebc1;
+  }
+
+  * {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    padding :0; 
+    text-decoration: none;
+    user-select: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  body, .container {
+    background-color: var(--color-white-yellow);
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  .container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .header-color {
+    background-color: var(--color-orange);
+  }
+  .game-title-color {
+    color: var(--color-pink);
+  }
+  .game-container-color {
+    background-color: var(--color-white-orange);
+  }
 </style>

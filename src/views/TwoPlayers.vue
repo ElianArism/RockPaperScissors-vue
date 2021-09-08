@@ -1,32 +1,25 @@
 <template>
   <!-- Home container -->
-  <div class="home">
+  <section class="two-players-container">
     <!-- Game component -->
     <Game />
-  </div>
+  </section>
 </template>
 
 <script>
 import Game from '../components/Game.vue'
-
 export default {
-  name: 'Home',
   components: {
     Game
-  },
-  setup() {
-
   }
-
 }
 </script>
 
 <style lang="scss">
   @import '../assets/global.scss';
-  
-  .home {
+
+  .two-players-container {
     @include flex(row, center, center);
-    width: 100%;
-    height: 100%;
+
   }
 </style>
