@@ -1,4 +1,9 @@
-# rock-paper-scissors
+# Rock paper & scissors
+Simple game made in Vue.js. 
+
+Deployed in: 
+  * https://epic-kirch-c0e6bf.netlify.app/
+
 
 ## Project setup
 ```
@@ -10,10 +15,3 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

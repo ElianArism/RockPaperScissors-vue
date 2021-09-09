@@ -2,6 +2,7 @@
   "name": "rock-paper-scissors",
   "version": "0.1.0",
   "private": true,
+  "author": "Arismendi Elian - https://github.com/ElianArism",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"

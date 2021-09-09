@@ -13,9 +13,6 @@ export default {
   name: 'Home',
   components: {
     Game
-  },
-  setup() {
-
   }
 
 }

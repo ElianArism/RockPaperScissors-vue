@@ -1,28 +1,22 @@
 <template>
+  <!-- Game table container -->
   <div v-if="!getAlertLoading" class="game-table">
-    <div @click="play('rock')" class="game-move">
+    <div @click="playGame('rock')" class="game-move">
       <i class="fas fa-hand-rock"></i>
     </div>
-    <div @click="play('paper')" class="game-move">
+    <div @click="playGame('paper')" class="game-move">
       <i class="fas fa-hand-paper"></i>
     </div>
-    <div @click="play('scissors')" class="game-move">
+    <div @click="playGame('scissors')" class="game-move">
       <i class="fas fa-hand-scissors"></i>
     </div>
   </div>
-
-  <!-- <div  class="game-loading-spinner">
-    <div class="fa-3x">
-      <div class="game-move">
-        <i class="fas fa-cog fa-spin"></i>
-      </div>
-    </div>
-  </div> -->
 
   <Alert v-else/>
 </template>
 
 <script>
+import {PlayerInfo} from '../hooks/PlayerInfoHook.js'
 import {GameHook} from '../hooks/GameHook.js'
 import {UIHook} from '../hooks/UIHook.js'
 import Alert from './Alert.vue'
@@ -31,10 +25,44 @@ export default {
     Alert
   },
   setup() {
+    const {player2} = PlayerInfo()
+    const {play, setPlayerTurn} = GameHook()
+    let mov1, mov2
+    /**
+     * Control the game behavior
+     * @param mov {string}
+     */
+    const playGame = (mov) => {
+      if(player2.value.name !== 'Bot') {
+        if(mov1) {
+          mov2 = mov
+          setPlayerTurn()
+        } else {
+          mov1 = mov
+          setPlayerTurn()
+        }
+        if(mov1 && mov2) {
+          play(mov1, mov2)
+          resetMoves()
+        }
+      } else {
+        mov1 = mov
+        play(mov1)
+        resetMoves()
+      }
+    }
+
+    /**
+     * Reset game
+     */
+    const resetMoves = () => {
+      mov1 = null
+      mov2 = null
+    }
 
     return {
-      ...GameHook(),
-      ...UIHook()
+      ...UIHook(),
+      playGame
     }
   }
 }
@@ -63,6 +91,18 @@ export default {
         transition: transform 300ms, filter 300ms;
       }
     }
+
+    @media screen and (max-width: 870px) {
+      .game-move {
+        font-size: 5rem;
+      }
+    } 
+
+     @media screen and (max-width: 430px) {
+       .game-move {
+        font-size: 2.5rem;
+      }
+     }
   }
 
 </style>

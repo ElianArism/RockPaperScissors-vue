@@ -10,7 +10,7 @@ export default createStore({
       score: 0, 
       name: 'Bot'
     }, 
-    loadingMove: false, 
+    playerTurn: '1', 
     loadAlert: false,
     alert: {
       message: '', 
@@ -31,13 +31,13 @@ export default createStore({
      * @param {*} state 
      */
     player2(state) {
-      state.player2.name = (state.player2.name === 'bot') ? 'Jugador 2' : 'Bot' 
+      state.player2.name = (state.player2.name === 'Bot') ? 'Jugador 2' : 'Bot' 
     },
     /**
-     * set Loading.
+     * set player turn.
      */
-    setLoading(state) {
-      state.loadingMove = !state.loadingMove
+    setPlayerTurn(state) {
+      state.playerTurn = (state.playerTurn === '1') ? '2' : (state.playerTurn === '2') ? '0' : '1' 
     },
     /**
      * set alert loading.
@@ -49,7 +49,8 @@ export default createStore({
      * set alert information.
      */
     setAlertInfo(state, {classColor, message}) {
-      state.alert = { classColor, message }
+      state.alert.classColor = classColor 
+      state.alert.message = message
     }
   },
   actions: {
@@ -59,8 +60,8 @@ export default createStore({
     player2({commit}) {
       commit('player2')
     }, 
-    setLoading({commit}) {
-      commit('setLoading')
+    setPlayerTurn({commit}) {
+      commit('setPlayerTurn')
     },
     setAlertLoading({commit}) {
       commit('setAlertLoading')
@@ -76,8 +77,8 @@ export default createStore({
     getPlayer2(state) {
       return state.player2
     }, 
-    getLoading(state) {
-      return state.loadingMove
+    getPlayerTurn(state) {
+      return state.playerTurn
     },
     getAlertLoading(state) {
       return state.loadAlert

@@ -6,8 +6,14 @@ export function GameHook() {
   const validMoves = ['rock', 'paper', 'scissors']
   const store = useStore()
   const { player1, player2 } = PlayerInfo()
+  
+  /**
+   * Compare moves and choose a winner.
+   * @param {string} move1 
+   * @param {string} move2 
+   * @returns 
+   */
   const compareMoves = (move1, move2) => {
-    console.log(move1, move2)
     if(
       move1 === 'rock' && move2 === 'rock' ||
       move1 === 'paper' && move2 === 'paper' ||
@@ -40,10 +46,13 @@ export function GameHook() {
     }
   }
 
+  /**
+   * Manage the game behavior, for two player or one player.
+   * @param {string} move 
+   * @param {string} move2 
+   */
   const play = (move, move2 = '') => {
     let whoWon
-    
-    // store.dispatch('setLoading')
 
     if(player2.value.name === 'Bot') {
       const randomNumber = Math.floor( (Math.random() * 3) )
@@ -59,17 +68,25 @@ export function GameHook() {
     store.dispatch('setAlertLoading')
   }
   
-  const getLoading = computed(() => {
-    return store.getters.getLoading
+  // Set player turn
+  const setPlayerTurn = () => {
+    store.dispatch('setPlayerTurn')
+  }
+
+  // Get player turn
+  const getPlayerTurn = computed(() => {
+    return store.getters.getPlayerTurn
   })
 
+  // Get alert loading
   const getAlertLoading = computed(() => {
     return store.getters.getAlertLoading
   })
 
   return {
     getAlertLoading,
-    getLoading, 
+    setPlayerTurn,
+    getPlayerTurn, 
     play
   }
 }

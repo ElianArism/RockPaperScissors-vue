@@ -22,11 +22,9 @@ export default {
     GameTable
   }, 
   setup() {
-
     return {
       ...PlayerInfo()
     }
-   
   }
 }
 </script>
@@ -60,6 +58,22 @@ export default {
         border-radius: 10px;
         color: var(--color-white-yellow);
         padding: 10px;
+      }
+    }
+
+    @media screen and (max-width: 430px) {
+
+      .game-container {
+        width: 100%;
+      }
+
+      .score-table {
+        @include flex(column, space-around, center); 
+        height: 100%;
+      }
+      
+      .score {
+        margin-top: 10px;
       }
     }
   }

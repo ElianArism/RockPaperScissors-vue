@@ -13,8 +13,8 @@ export function UIHook() {
   })
 
   const setAlertLoading = () => {
+    store.dispatch('setPlayerTurn')
     store.dispatch('setAlertLoading')
-    // store.dispatch('setLoading')
   }
 
   return {
